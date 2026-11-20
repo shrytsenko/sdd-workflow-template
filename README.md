@@ -1,16 +1,38 @@
 # Agentic Workflow Template (Spec-Driven Development v2.0)
 
 A structured process for working with an AI coding assistant on non-trivial features,
-following the rules in [CLAUDE.md](CLAUDE.md): discovery → spec → architecture →
-contracts → tasks → TDD implementation → review → deploy → monitor — instead of one
-long freeform chat that drifts and loses context.
+following the rules in [CLAUDE.md](CLAUDE.md) — instead of one long freeform chat that
+drifts and loses context.
+
+## The workflow at a glance
+
+```mermaid
+flowchart TD
+    A["Phase 1: Discovery\nidea.md"] --> B["Phase 2: Specification\nspec.md"]
+    B --> C["Phase 3: Architecture & Contracts\narch.md + contracts.md"]
+    C --> D["Phase 4: Task Breakdown\ntasks.md"]
+    D --> E["Phase 5: TDD\ntests RED -> code GREEN -> refactor"]
+    E --> F["Phase 6: Clean-context Review\n+ security audit"]
+    F --> G["Phase 7: Deploy & Smoke Test\n+ open PR"]
+    G --> H["Phase 8: Telemetry Watch"]
+    H --> I["Phase 9: Housekeeping"]
+
+    A -.->|"/clear between phases"| B
+    B -.->|"/clear between phases"| C
+    C -.->|"/clear between phases"| D
+    D -.->|"/clear between phases"| E
+```
+
+Each box is a markdown file living in `docs/features/<your-feature-name>/`, copied
+from the [`docs/features/_template/`](docs/features/_template/) folder. The dashed
+arrows are a reminder: clear the AI's context between phases (`CLAUDE.md` Core Rule #3)
+so it reasons from the written file, not a long drifting conversation.
 
 ## How to use this for a new feature
 
 1. Copy `docs/features/_template/` to `docs/features/<your-feature-name>/`.
-2. Tell the AI: "Починаємо розробку фічі [назва], давай перейдемо до Phase 1
-   (Інтерв'ювання)" (or the English equivalent). It will interview you one question
-   at a time, then lead you through the phases defined in `CLAUDE.md`.
+2. Tell the AI you're starting Phase 1 for this feature. It will interview you one
+   question at a time, then lead you through the phases defined in `CLAUDE.md`.
 3. Fill in each file as its phase completes, in order:
    - **idea.md** — raw interview notes: problem, target user, rough scope, edge cases, open questions.
    - **spec.md** — goals, non-goals, user stories, acceptance criteria (Given/When/Then), NFRs.
@@ -25,6 +47,15 @@ long freeform chat that drifts and loses context.
 ## Pipeline modes
 
 Not every change needs all 9 phases. Declare the mode up front (see `CLAUDE.md` §2):
+
+```mermaid
+flowchart LR
+    Start["New change"] --> Q{"How big / risky?"}
+    Q -->|"Bug, typo,\n<50 LOC"| Quick["QUICK\nmini-spec + test + code"]
+    Q -->|"Isolated feature,\nnew endpoint"| Standard["STANDARD\nPhases 1, 2, 4, 5, 6"]
+    Q -->|"Core logic, schema change,\npublic API, security-critical"| Full["FULL\nall Phases 1-9"]
+```
+
 - **QUICK** — bugs, typos, small refactors (<50 LOC): skip straight to a mini-spec + test + code.
 - **STANDARD** — isolated features, new endpoints: Phases 1, 2, 4, 5, 6.
 - **FULL** — core business logic, schema changes, public APIs, security-critical code: all Phases 1–9.
