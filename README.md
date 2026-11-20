@@ -12,6 +12,7 @@ long freeform chat that drifts and loses context.
    (Інтерв'ювання)" (or the English equivalent). It will interview you one question
    at a time, then lead you through the phases defined in `CLAUDE.md`.
 3. Fill in each file as its phase completes, in order:
+   - **idea.md** — raw interview notes: problem, target user, rough scope, edge cases, open questions.
    - **spec.md** — goals, non-goals, user stories, acceptance criteria (Given/When/Then), NFRs.
    - **arch.md** — component diagram (Mermaid), Architecture Decision Records, error/security strategy.
    - **contracts.md** — DB migrations, API request/response schemas.
