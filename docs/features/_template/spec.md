@@ -1,33 +1,33 @@
-# Specification: [Назва Фічі]
+# Specification: [Feature Name]
 
 ## 1. Executive Summary & Goals
-- **Мета**: [Короткий опис того, що ми будуємо і навіщо]
-- **Бізнес-цінність**: [Яку проблему користувача чи бізнесу це вирішує]
+- **Goal**: [Short description of what we're building and why]
+- **Business value**: [What user or business problem this solves]
 - **Pipeline Mode**: [QUICK | STANDARD | FULL]
 
-## 2. Non-Goals (Поза скоупом)
-*Чіткі межі — чого ми свідомо НЕ робимо у цій ітерації:*
-- [ ] НЕ робимо підтримку підключення кількох акаунтів.
-- [ ] НЕ змінюємо схему білінгу.
+## 2. Non-Goals (Out of scope)
+*Clear boundaries — what we deliberately do NOT do in this iteration:*
+- [ ] Do NOT support connecting multiple accounts.
+- [ ] Do NOT change the billing schema.
 
 ## 3. User Stories & UX Flow
-- **Як** [роль користувача],
-- **Я хочу** [виконати дію],
-- **Щоб** [отримати конкретну цінність].
+- **As** [user role],
+- **I want** [to perform an action],
+- **So that** [I get a specific value].
 
-*(Для UI-задач додайте текстову або Mermaid-схему переходу між екранами)*
+*(For UI tasks, add a text or Mermaid diagram of the screen transitions)*
 
 ## 4. Acceptance Criteria (Given / When / Then)
-### Scenario 1: Успішний кейс
-- **GIVEN** (Передумова): Користувач знаходиться на сторінці авторизації та має активний інтернет.
-- **WHEN** (Дія): Користувач натискає кнопку "Авторизуватися через Google" та підтверджує доступ.
-- **THEN** (Результат): Створюється новий акаунт (якщо не існував), видається JWT-токен і відбувається редирект на `/dashboard`.
+### Scenario 1: Happy path
+- **GIVEN** (Precondition): The user is on the login page with an active internet connection.
+- **WHEN** (Action): The user clicks "Sign in with Google" and confirms access.
+- **THEN** (Result): A new account is created (if one didn't exist), a JWT token is issued, and the user is redirected to `/dashboard`.
 
-### Scenario 2: Помилка доступу
-- **GIVEN**: Користувач скасовує авторизацію у вікні Google.
-- **WHEN**: Google повертає помилку `access_denied`.
-- **THEN**: Система відображає тост-повідомлення "Авторизацію скасовано" та залишає користувача на сторінці входу.
+### Scenario 2: Access error
+- **GIVEN**: The user cancels authorization in the Google popup.
+- **WHEN**: Google returns an `access_denied` error.
+- **THEN**: The system shows a toast message "Authorization cancelled" and keeps the user on the login page.
 
 ## 5. Non-Functional Requirements (NFR)
-- **Performance**: Час відповіді API endpoint < 200ms (p95).
-- **Security**: Токени зберігаються в `HttpOnly`, `SameSite=Strict` cookies. OWASP compliant.
+- **Performance**: API endpoint response time < 200ms (p95).
+- **Security**: Tokens stored in `HttpOnly`, `SameSite=Strict` cookies. OWASP compliant.

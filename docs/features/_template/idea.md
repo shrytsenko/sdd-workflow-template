@@ -1,19 +1,19 @@
-# Idea: [Назва Фічі]
+# Idea: [Feature Name]
 
 > Output of Phase 1 (Requirement Discovery & Interviewing). Raw notes from the
 > 1-by-1 question interview, before they're formalized into `spec.md`.
 
 ## Problem
-[Яку проблему користувача чи бізнесу ми вирішуємо?]
+[What user or business problem are we solving?]
 
 ## Target user / role
-[Хто буде цим користуватись?]
+[Who will use this?]
 
 ## Rough scope
-[Що приблизно має робити ця фіча — без деталей реалізації]
+[What this feature roughly needs to do — no implementation details]
 
 ## Explicit non-goals
-[Що свідомо не робимо в цій ітерації]
+[What we deliberately do not do in this iteration]
 
 ## Edge cases raised during interview
 - [...]
@@ -22,4 +22,4 @@
 - [...]
 
 ## Open questions
-- [Будь-що, що лишилось нез'ясованим після інтерв'ю]
+- [Anything left unclear after the interview]

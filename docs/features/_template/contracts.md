@@ -1,4 +1,4 @@
-# Contracts & Data Models: [Назва Фічі]
+# Contracts & Data Models: [Feature Name]
 
 ## 1. Database Schema & Migrations
 

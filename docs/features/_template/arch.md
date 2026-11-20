@@ -1,7 +1,7 @@
-# Solution Architecture: [Назва Фічі]
+# Solution Architecture: [Feature Name]
 
 ## 1. Component Impact & Topology
-*Опис компонентів системи, які зазнають змін:*
+*Description of the system components affected:*
 
 ```mermaid
 graph TD
@@ -12,16 +12,16 @@ graph TD
 ```
 
 ## 2. Architecture Decision Records (ADR)
-**ADR-001: [Назва рішення, наприклад: Використання бібліотеки Google Auth Library]**
+**ADR-001: [Decision name, e.g. Use of the Google Auth Library]**
 
 - **Status**: [Proposed | Accepted | Rejected]
-- **Context**: Потрібно реалізувати перевірку Google ID Token на бекенді.
-- **Decision**: Використовувати офіційний SDK `google-auth-library` замість власної реалізації перевірки підпису.
+- **Context**: Need to validate a Google ID token on the backend.
+- **Decision**: Use the official `google-auth-library` SDK instead of a custom signature-verification implementation.
 - **Consequences**:
-  - Плюси: Автоматична обробка ротації ключів Google, готова безпека.
-  - Мінуси: Додаткова залежність у `package.json`.
+  - Pros: Automatic handling of Google key rotation, ready-made security.
+  - Cons: Extra dependency in `package.json`.
 
 ## 3. Security & Error Handling Strategy
 
-- **Error Format**: Всі помилки повертаються у стандарті RFC 7807 (`application/problem+json`).
-- **Logging**: Маскування персональних даних (PII) у логах (email, токени).
+- **Error Format**: All errors are returned in RFC 7807 format (`application/problem+json`).
+- **Logging**: Personal data (PII) masked in logs (email, tokens).
